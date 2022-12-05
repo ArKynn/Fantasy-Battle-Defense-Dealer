@@ -1,4 +1,4 @@
-from Items and Inventory.py import playerinventory
+from Items_and_Inventory import playerinventory
 import random
 
 #Dice throw 1-10
