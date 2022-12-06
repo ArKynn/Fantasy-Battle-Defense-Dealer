@@ -34,7 +34,7 @@ def buymenu(): #Buymenu screen
         display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
 
         num = 0
-        for materialname in Items_and_Inventory.allmaterials: #Renders strings for each existing material in their respective button
+        for materialname in Items_and_Inventory.allmaterials: #Renders strings and buttons for each existing material in their respective button
             display.blit(font.render(f"{materialname.name}", True, 'white'),[materialareas[num][0] + 10, materialareas[num][1] + 10])
             display.blit(font.render(f"Value: {materialname.value}", True, 'white'),[materialareas[num][0] + 10, materialareas[num][1] + 30])
             display.blit(font.render(f"Owned: {materialname.count}", True, 'white'),[materialareas[num][0] + 10, materialareas[num][1] + 50])
@@ -54,6 +54,16 @@ def buymenu(): #Buymenu screen
                 print(str(materialarea))
 
         display.blit(font.render(F"Currency: {Items_and_Inventory.playerinventory.money}", True, 'white'), (displayx/2, displayy/2))
+        
+        display.blit(font.render(F"Recipe Gacha", True, 'white'), (recipegachaarea[0] + 10, recipegachaarea[1] + 10))
+        display.blit(font.render(f"Value: {4 + len(Items_and_Inventory.OwnedRecipes)}", True, 'white'),[recipegachaarea[0] + 10, recipegachaarea[1] + 30])
+        display.blit(font.render(f"Owned: {len(Items_and_Inventory.OwnedRecipes)}", True, 'white'),[recipegachaarea[0] + 10, recipegachaarea[1] + 50])
+        display.blit(font.render(f"Buy?", True, 'white'),[recipegachaarea[0] + 140, recipegachaarea[1] + 27])
+        pygame.draw.rect(display, 'white', recipegachaarea, 1)
+
+        if checkmousestate(recipegachaarea) == True:
+            if Items_and_Inventory.playerinventory.money >= 4 + len(Items_and_Inventory.OwnedRecipes):
+                pass 
 
         pygame.display.flip()
         clock.tick(60)
@@ -86,7 +96,7 @@ precisousarea = pygame.Rect(woodarea[0], woodarea[1] +500, 250, 75)
 
 materialareas = (woodarea, stringarea, leatherarea, ironarea, goldarea, precisousarea)
 
-recipegachaarea = pygame.Rect(displayx/2, displayy/2 - 100,)
+recipegachaarea = pygame.Rect(displayx/2, displayy/2 + 100, 250, 75)
 
 while True:
     starting()
