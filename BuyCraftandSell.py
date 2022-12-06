@@ -1,9 +1,10 @@
-def buy_materials(allmaterials, playerinventory, input):
+import Items_and_Inventory
+def buy_materials(input):
 
-    if input in allmaterials:
-        if playerinventory.money >= input.value:
-            playerinventory.money += -input.value
-            playerinventory.input += 1
+    if input in Items_and_Inventory.allmaterials:
+        if Items_and_Inventory.playerinventory.money >= input.value:
+            Items_and_Inventory.playerinventory.money += -input.value
+            input.count += 1
             return True
         else:
             return False        

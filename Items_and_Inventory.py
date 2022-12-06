@@ -15,7 +15,7 @@ class item:
 
 
 class weapon(item):
-    def __init__(self, name, value, count, damage, min_quality, recipe: recipe):
+    def __init__(self, name, value, count, damage, min_quality, recipe):
         super(weapon, self).__init__(name, value, count) #Based on answer by Ozgur Vatansever on StackOverflow (https://stackoverflow.com/questions/31899465/python-how-to-correctly-set-up-hierarchy-of-classes)
         self.damage = damage
         self.min_quality = min_quality
@@ -27,7 +27,7 @@ class weapon(item):
         print("Quality: " + str(self.min_quality))
 
 class armor(item):
-    def __init__(self, name, value, protection, count, min_quality, recipe: recipe):
+    def __init__(self, name, value, protection, count, min_quality, recipe):
         super(armor, self).__init__(name, value, count)
         self.protection = protection
         self.min_quality = min_quality
@@ -46,10 +46,10 @@ class material(item):
 
 
 wood = material("Wood", 1, 0)
+string = material("String", 1, 0)
 leather = material("Leather", 2, 0)
 iron = material("Iron", 3, 0)
 gold = material("Gold", 4, 0)
-string = material("String", 1, 0)
 precious_stone = material("Precious Stone", 10, 0)
 
 recipe_sword_lvl1 = recipe("Common Sword recipe", (wood, iron, leather), (1, 1, 1), "Needs 1*wood, 1*iron, 1*leather")
@@ -115,7 +115,7 @@ greaves_lvl3 = armor("Exotic Greaves", 3, 3, 0, 3, recipe_greaves_lvl3)
 greaves_lvl4 = armor("Legendary Greaves", 4, 4, 0, 4, recipe_greaves_lvl4)
 
 
-allmaterials = [wood, leather, iron, gold, string, precious_stone]
+allmaterials = [wood, string, leather, iron, gold, precious_stone]
 
 allswords = [sword_lvl1, sword_lvl2, sword_lvl3, sword_lvl4]
 allhammers = [hammer_lvl1, hammer_lvl2, hammer_lvl3, hammer_lvl4]
@@ -134,26 +134,25 @@ class playerinventory:
         self.money = money
         self.craftexp = craftexp
 
-playerinventory = playerinventory(0, 0)
+playerinventory = playerinventory(10000, 0)
 
 #print(f"{itemtypes[1][1][1].name}")
 
-print("1. MATERIALS")
-print()
-for i in allmaterials:
-    i.display()
-    print()
-print("____________________________________________________________________________________")
-print()
-print("2. ITEMS")
-print()
-for each_itemtype in itemtypes:
-    for each_weapon_armor in each_itemtype:
-        for each_item in each_weapon_armor:
-            each_item.display()
-            each_item.recipe.display()
-            print()
-        print("--------------------------------------------------------------------------------")
+#   print()
+#    for i in allmaterials:
+#        i.display()
+#        print()
+#    print("____________________________________________________________________________________")
+#    print()
+#    print("2. ITEMS")
+#    print()
+#    for each_itemtype in itemtypes:
+#        for each_weapon_armor in each_itemtype:
+#            for each_item in each_weapon_armor:
+#                each_item.display()
+#                each_item.recipe.display()
+#                print()
+#            print("--------------------------------------------------------------------------------")
     
 
 #for i in allswords:
