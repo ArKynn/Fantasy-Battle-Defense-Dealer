@@ -132,7 +132,7 @@ class playerinventory:
         self.money = money
         self.craftexp = craftexp
 
-playerinventory = playerinventory(10000, 0)
+playerinventory = playerinventory(100, 0)
 
 #print(f"{itemtypes[1][1][1].name}")
 
