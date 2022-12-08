@@ -73,7 +73,7 @@ recipe_bow_lvl2 = recipe("Rare Bow recipe", (wood, iron, string), (3, 1, 1), "Ne
 recipe_bow_lvl3 = recipe("Exotic Bow recipe", (wood, gold, string), (4, 1, 1), "Needs 4*wood, 1*gold, 1*string")
 recipe_bow_lvl4 = recipe("Legendary Bow recipe", (wood, gold, string, precious_stone), (4, 2, 2, 1), "4*wood, 2*gold, 2*string, 1*precious stone")
 
-recipe_helmet_lvl1 = recipe("Common Helmet recipe", (iron), (3), "Needs 3*iron")
+recipe_helmet_lvl1 = recipe("Common Helmet recipe", (iron, leather), (3, 1), "Needs 3*iron, 1*leather")
 recipe_helmet_lvl2 = recipe("Rare Helmet recipe", (iron, leather), (3, 2), "Needs 3*iron, 2*leather")
 recipe_helmet_lvl3 = recipe("Exotic Helmet recipe", (iron, leather, gold), (4, 2, 1), "Needs 4*iron, 2*leather, 1*gold")
 recipe_helmet_lvl4 = recipe("Legendary Helmet recipe", (iron, leather, gold, precious_stone), (4, 2, 2, 1), "Needs 4*iron, 2*leather, 2*gold, 1*precious stone")
@@ -91,14 +91,14 @@ recipe_greaves_lvl4 = recipe("Legendary Greaves recipe", (iron, leather , precio
 
 
 sword_lvl1 = weapon("Common Sword", 20, 0, 0, 1, 1, recipe_sword_lvl1, 10, True)
-sword_lvl2 = weapon("Rare Sword", 25, 0, 2, 2, recipe_sword_lvl2, 12, False) 
-sword_lvl3 = weapon("Exotic Sword", 40, 0, 3, 3, recipe_sword_lvl3, 19, False) 
-sword_lvl4 = weapon("Legendary Sword", 100, 0, 4, 4, recipe_sword_lvl4, 24, False)
+sword_lvl2 = weapon("Rare Sword", 25, 0, 0, 2, 2, recipe_sword_lvl2, 12, False) 
+sword_lvl3 = weapon("Exotic Sword", 40, 0, 0, 3, 3, recipe_sword_lvl3, 19, False) 
+sword_lvl4 = weapon("Legendary Sword", 100, 0, 0, 4, 4, recipe_sword_lvl4, 24, False)
 
 hammer_lvl1 = weapon("Common Hammer", 25, 0, 0, 1, 1, recipe_hammer_lvl1, 12, True)
-hammer_lvl2 = weapon("Rare Hammer", 30, 0, 2, 2, recipe_hammer_lvl2, 15, False)
-hammer_lvl3 = weapon("Exotic Hammer", 50, 0, 3, 3, recipe_hammer_lvl3, 20, False)
-hammer_lvl4 = weapon("Legendary Hammer", 150, 0, 4, 4, recipe_hammer_lvl4, 28, False)
+hammer_lvl2 = weapon("Rare Hammer", 30, 0, 0, 2, 2, recipe_hammer_lvl2, 15, False)
+hammer_lvl3 = weapon("Exotic Hammer", 50, 0, 0, 3, 3, recipe_hammer_lvl3, 20, False)
+hammer_lvl4 = weapon("Legendary Hammer", 150, 0, 0, 4, 4, recipe_hammer_lvl4, 28, False)
 
 bow_lvl1 = weapon("Common Bow", 10, 0, 0, 1, 1, recipe_bow_lvl1, 13, True)
 bow_lvl2 = weapon("Rare Bow", 15, 0, 0, 2, 2, recipe_bow_lvl2, 18, False)
