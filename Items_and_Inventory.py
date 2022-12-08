@@ -134,12 +134,12 @@ allrecipes = [recipe_sword_lvl1, recipe_bow_lvl1, recipe_hammer_lvl1, recipe_che
                 recipe_sword_lvl3, recipe_bow_lvl3, recipe_hammer_lvl3, recipe_chestplate_lvl3, recipe_greaves_lvl3, recipe_helmet_lvl3,
                 recipe_sword_lvl4, recipe_bow_lvl4, recipe_hammer_lvl4, recipe_chestplate_lvl4, recipe_greaves_lvl4, recipe_helmet_lvl4]
 
-class playerinventory:
+class classplayerinventory:
     def __init__(self, money, craftexp):
         self.money = money
         self.craftexp = craftexp
 
-playerinventory = playerinventory(100, 0)
+playerinventory = classplayerinventory(100, 0)
 
 #print(f"{itemtypes[1][1][1].name}")
 
