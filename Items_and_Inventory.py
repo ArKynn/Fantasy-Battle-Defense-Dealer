@@ -91,15 +91,15 @@ sword_lvl2 = weapon("Rare Sword", 2, 0, 2, 2, recipe_sword_lvl2, False)
 sword_lvl3 = weapon("Exotic Sword", 3, 0, 3, 3, recipe_sword_lvl3, False) 
 sword_lvl4 = weapon("Legendary Sword", 4, 0, 4, 4, recipe_sword_lvl4, False)
 
-hammer_lvl1 = weapon("Common Hammer", 1, 1, 0, 1, recipe_hammer_lvl1, True)
-hammer_lvl2 = weapon("Rare Hammer", 2, 2, 0, 2, recipe_hammer_lvl2, False)
-hammer_lvl3 = weapon("Exotic Hammer", 3, 3, 0, 3, recipe_hammer_lvl3, False)
-hammer_lvl4 = weapon("Legendary Hammer", 4, 4, 0, 4, recipe_hammer_lvl4, False)
+hammer_lvl1 = weapon("Common Hammer", 1, 0, 1, 1, recipe_hammer_lvl1, True)
+hammer_lvl2 = weapon("Rare Hammer", 2, 0, 2, 2, recipe_hammer_lvl2, False)
+hammer_lvl3 = weapon("Exotic Hammer", 3, 0, 3, 3, recipe_hammer_lvl3, False)
+hammer_lvl4 = weapon("Legendary Hammer", 4, 0, 4, 4, recipe_hammer_lvl4, False)
 
-bow_lvl1 = weapon("Common Bow", 1, 1, 0, 1, recipe_bow_lvl1, True)
-bow_lvl2 = weapon("Rare Bow", 2, 2, 0, 2, recipe_bow_lvl2, False)
-bow_lvl3 = weapon("Exotic Bow", 3, 3, 0, 3, recipe_bow_lvl3, False)
-bow_lvl4 = weapon("Legendary Bow", 4, 4, 0, 4, recipe_bow_lvl4, False)
+bow_lvl1 = weapon("Common Bow", 1, 0, 1, 1, recipe_bow_lvl1, True)
+bow_lvl2 = weapon("Rare Bow", 2, 0, 2, 2, recipe_bow_lvl2, False)
+bow_lvl3 = weapon("Exotic Bow", 3, 0, 3, 3, recipe_bow_lvl3, False)
+bow_lvl4 = weapon("Legendary Bow", 4, 0, 4, 4, recipe_bow_lvl4, False)
 
 helmet_lvl1 = armor("Common Helmet", 1, 1, 0, 1, recipe_helmet_lvl1, True)
 helmet_lvl2 = armor("Rare Helmet", 2, 2, 0, 2, recipe_helmet_lvl2, False)
@@ -118,6 +118,13 @@ greaves_lvl4 = armor("Legendary Greaves", 4, 4, 0, 4, recipe_greaves_lvl4, False
 
 
 allmaterials = [wood, string, leather, iron, gold, precious_stone]
+
+allswords = [sword_lvl1, sword_lvl2, sword_lvl3, sword_lvl4]
+allhammers = [hammer_lvl1, hammer_lvl2, hammer_lvl3, hammer_lvl4]
+allbows = [bow_lvl1, bow_lvl2, bow_lvl3, bow_lvl4]
+allhelmets = [helmet_lvl1, helmet_lvl2, helmet_lvl3, helmet_lvl4]
+allchestplates = [chestplate_lvl1, chestplate_lvl2, chestplate_lvl3, chestplate_lvl4]
+allgreaves = [greaves_lvl1, greaves_lvl2, greaves_lvl3, greaves_lvl4]
 
 
 

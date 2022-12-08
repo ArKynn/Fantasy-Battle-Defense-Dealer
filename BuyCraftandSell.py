@@ -1,4 +1,4 @@
-import Items_and_Inventory
+import Items_and_Inventory, d10_and_end_game
 def buy_materials(input):
 
     if input in Items_and_Inventory.allmaterials:
@@ -10,10 +10,12 @@ def buy_materials(input):
             return False        
     raise Exception("Input is not of the same type as material or does not exist.")
     
-def craftattempt(craftexp, d10):
-
-    craftquality = craftexp * d10
-    return craftquality
+def craftattempt(craftitem):
+    
+    craftquality = Items_and_Inventory.playerinventory.craftexp * d10_and_end_game.d10throw() /10
+    Items_and_Inventory.playerinventory.craftexp += craftitem.value
+    if craftquality >= craftitem.min_quality:
+        craftitem.count += 1
 
 def craft(materialinventory, allrecipes, equipmentinventory, input):
     

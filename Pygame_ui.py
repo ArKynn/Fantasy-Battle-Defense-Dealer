@@ -6,14 +6,13 @@ def exitgamecheck(): #If ESC is pressed, shutsdown program
             sys.exit()
 
 #Checks for mouse position, lights up button in red and checks if mouse is pressed
-def checkmousestate(rectanglearea): #Based on answer by skrx on StackOverfow (https://stackoverflow.com/questions/44998943/how-to-check-if-the-mouse-is-clicked-in-a-certain-area-pygame)
+def checkmousestate(rectanglearea):
     global mouse1
-    if rectanglearea.collidepoint(pygame.mouse.get_pos()):
+    if rectanglearea.collidepoint(pygame.mouse.get_pos()):  #Based on answer by skrx on StackOverfow (https://stackoverflow.com/questions/44998943/how-to-check-if-the-mouse-is-clicked-in-a-certain-area-pygame)
         pygame.draw.rect(display, 'red', rectanglearea, 1)
         for event in pygame.event.get(eventtype=MOUSEBUTTONDOWN):
             if event.button == 1:
                 return True
-
 
 def starting(): #Starting screen, renders a simple starting button
     starting = True
@@ -95,37 +94,112 @@ def buymenu(): #Buymenu screen
         pygame.draw.rect(display, 'white', gotocrafingarea, 1)
         if checkmousestate(gotocrafingarea) == True:
             buymenu == False
-
+            break
         pygame.display.flip()
         clock.tick(60)
         
 def craftmenu():
-    equipmenttypearea = pygame.Rect(displayx / 4, displayy / 2, 175, 75)
+    global Items
+
+    weapontypes = {
+    "sword" : Items_and_Inventory.allswords,
+    "hammer" : Items_and_Inventory.allhammers,
+    "bow" : Items_and_Inventory.allbows,
+    "helmet" : Items_and_Inventory.allhelmets,
+    "chestplate" : Items_and_Inventory.allchestplates,
+    "greaves" : Items_and_Inventory.allgreaves,
+}
+
+    equipmenttypearea = pygame.Rect(displayx / 4 +75, displayy / 2, 175, 75)
     typeupbutton = pygame.Rect(displayx / 4, displayy / 2, 75, 30)
     typedownbutton = pygame.Rect(displayx / 4, displayy / 2 + 45, 75, 30)
     equipmentlvlarea = pygame.Rect(displayx / 4 + 275, displayy / 2, 75, 75)
     lvlupbutton = pygame.Rect(displayx / 4 + 350, displayy / 2, 75, 30)
     lvldownbutton = pygame.Rect(displayx / 4 + 350, displayy / 2 + 45, 75, 30)
     recipematerialarea = pygame.Rect(displayx / 4, displayy / 2 + 100, 250, 30)
-    craftbutton =  pygame.Rect(displayx / 4 + 475, displayy / 2, 75, 30)
+    craftbutton =  pygame.Rect(displayx / 4 + 475, displayy / 2, 175, 75)
     gotosellbutton = pygame.Rect(displayx- 300, displayy - 100, 200, 50)
 
-    selectedequipmenttype = "not yet"
-    selectedequipmentlvl = "null"
+    allcraftbuttons = (equipmenttypearea, typeupbutton, typedownbutton, 
+                        equipmentlvlarea, lvlupbutton, lvldownbutton)
 
-    display.blit(font.render(f"{selectedequipmenttype}", True, 'white'), (equipmenttypearea[0] + 10, equipmentlvlarea[1] + 10))
+    allequipmenttypes = ("sword", "hammer", "bow", "helmet", "chestplate", "greaves")
+    allequipmentlvls = (1, 2, 3, 4)
 
-    display.blit(font.render(f"{selectedequipmentlvl}", True, 'white'), (equipmenttypearea[0] + 10, equipmentlvlarea[1] + 10))
+    equipmenttypeindex = 0
+    equipmentlvlindex = 0
 
+    selectedequipmenttype = allequipmenttypes[equipmenttypeindex]
+    selectedequipmentlvl = allequipmentlvls[equipmentlvlindex]
 
+    
     craftmenu = True
     while craftmenu == True:
+
+        selectedequipmenttype = allequipmenttypes[equipmenttypeindex]
+        selectedequipmentlvl = allequipmentlvls[equipmentlvlindex]
 
         exitgamecheck()
         display.fill('black')
         display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
 
-        pass
+        display.blit(font.render(f"Type: {selectedequipmenttype}", True, 'white'), (equipmenttypearea[0] + 10, equipmenttypearea[1] + 10))
+        display.blit(font.render(f"Lvl {selectedequipmentlvl}", True, 'white'), (equipmentlvlarea[0] + 10, equipmentlvlarea[1] + 10))
+
+        for button in allcraftbuttons:
+            pygame.draw.rect(display, 'white', button, 1)
+        
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +27, displayy /2 +23),(displayx /4 +35, displayy /2 + 7),(displayx /4 +43, displayy /2 +23)], 1)
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +27, displayy /2 +52),(displayx /4 +35, displayy /2 + 68),(displayx /4 +43, displayy /2 +52)], 1)
+
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +377, displayy /2 +23),(displayx /4 +385, displayy /2 + 7),(displayx /4 +393, displayy /2 +23)], 1)
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +377, displayy /2 +52),(displayx /4 +385, displayy /2 + 68),(displayx /4 +393, displayy /2 +52)], 1)
+
+        if checkmousestate(typeupbutton) == True and equipmenttypeindex != 5:
+                equipmenttypeindex += 1
+        elif checkmousestate(typedownbutton) == True and equipmenttypeindex != 0:
+                equipmenttypeindex += -1
+        elif checkmousestate(lvlupbutton) == True and equipmentlvlindex != 3:
+                equipmentlvlindex += 1
+        elif checkmousestate(lvldownbutton) == True and equipmentlvlindex != 0:
+            equipmentlvlindex += -1
+        
+        selecteditem = weapontypes[selectedequipmenttype][selectedequipmentlvl -1]
+        display.blit(font.render(f"Ammout owned: {selecteditem.count}, {selecteditem.recipe.description}", True, 'white'), (displayx / 4, displayy / 2 + 100))
+
+        if selecteditem.recipe in Items_and_Inventory.OwnedRecipes:
+            pygame.draw.rect(display, 'white', craftbutton, 1)
+            display.blit(font.render(f"Attempt to Craft?", True, 'white'), (craftbutton[0] +25, craftbutton[1] +25))
+
+            if checkmousestate(craftbutton) == True:
+                materialnumber = -1
+                enoughmaterials = True
+                print("a")
+                for materialtype in selecteditem.recipe.materials:
+                    print (materialtype)
+                    materialnumber += 1
+                    if materialtype.count < selecteditem.recipe.quantities[materialnumber]:
+                        enoughmaterials = False
+                if enoughmaterials == True:
+                    BuyCraftandSell.craftattempt(selecteditem)
+                    materialnumber = -1
+                    for materialtype in selecteditem.recipe.materials:
+                        materialtype.count += -selecteditem.recipe.quantities[materialnumber] 
+                        materialnumber += 1
+                    
+        else:
+            display.blit(font.render(f"Recipe not Owned", True, 'white'), (craftbutton[0] +25, craftbutton[1] +25))
+
+        materialtext = f"Owned materials: {Items_and_Inventory.wood.count} Wood, {Items_and_Inventory.string.count} String,  {Items_and_Inventory.leather.count} Leather, {Items_and_Inventory.iron.count} Iron, {Items_and_Inventory.gold.count} Gold, {Items_and_Inventory.precious_stone.count} Precious Stones"
+        display.blit(font.render(materialtext, True, 'white'), (350, 300))
+
+        display.blit(font.render(f"Proceed to Selling", True, 'white'), (gotosellbutton[0] + 10, gotosellbutton[1] + 10))
+        pygame.draw.rect(display, 'white', gotosellbutton, 1)
+        if checkmousestate(gotosellbutton) == True:
+            buymenu == False
+            break
+        pygame.display.flip()
+        clock.tick(60)
 
 import pygame, sys, Items_and_Inventory, BuyCraftandSell, random
 from pygame.locals import *
