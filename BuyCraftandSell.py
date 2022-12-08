@@ -17,13 +17,6 @@ def craftattempt(craftitem):
     if craftquality >= craftitem.min_quality:
         craftitem.count += 1
 
-def craft(materialinventory, allrecipes, equipmentinventory, input):
-    
-    if input in allrecipes:
-        pass
-    else:
-        raise Exception("Input is not of the same type as equipment or does not exist.")
-
 def sell(input, playerinventory):
     if input.count >= 1:
         input.count += -1
