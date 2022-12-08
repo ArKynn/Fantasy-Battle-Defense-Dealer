@@ -143,7 +143,7 @@ class playerinventory:
         self.money = money
         self.craftexp = craftexp
 
-playerinventory = playerinventory(100, 0)
+playerinventory = playerinventory(250, 0)
 
 
 

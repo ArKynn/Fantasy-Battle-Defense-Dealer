@@ -10,7 +10,7 @@ def d10throw() -> int:
 
 def end_game (current_money) -> bool:
     current_money = playerinventory.money
-    if current_money == 100000:
-        return current_money
+    if current_money >= 10000:
+        return True
 
 

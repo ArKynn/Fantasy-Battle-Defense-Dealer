@@ -76,7 +76,7 @@ def buymenu(): #Buymenu screen
         display.blit(font.render(F"Currency: {Items_and_Inventory.playerinventory.money}", True, 'white'), (displayx/2, displayy/2))
         
         display.blit(font.render(F"Recipe Gacha", True, 'white'), (recipegachaarea[0] + 10, recipegachaarea[1] + 10))
-        display.blit(font.render(f"Value: {4 + len(Items_and_Inventory.OwnedRecipes)}", True, 'white'),[recipegachaarea[0] + 10, recipegachaarea[1] + 30])
+        display.blit(font.render(f"Value: {20 + round(1.3 ** len(Items_and_Inventory.OwnedRecipes))}", True, 'white'),[recipegachaarea[0] + 10, recipegachaarea[1] + 30])
         display.blit(font.render(f"Owned: {len(Items_and_Inventory.OwnedRecipes)}", True, 'white'),[recipegachaarea[0] + 10, recipegachaarea[1] + 50])
         if len(Items_and_Inventory.allrecipes) != len(Items_and_Inventory.OwnedRecipes):
             display.blit(font.render(f"Buy?", True, 'white'),[recipegachaarea[0] + 140, recipegachaarea[1] + 27])
@@ -87,13 +87,13 @@ def buymenu(): #Buymenu screen
 
         if len(Items_and_Inventory.allrecipes) != len(Items_and_Inventory.OwnedRecipes):
             if checkmousestate(recipegachaarea) == True:
-                if Items_and_Inventory.playerinventory.money >= 4 + len(Items_and_Inventory.OwnedRecipes):
+                if Items_and_Inventory.playerinventory.money >= 20 + round(1.3 ** len(Items_and_Inventory.OwnedRecipes)):
                     rolling = True
                     while rolling == True:
                         boughtrecipe = random.choice(Items_and_Inventory.allrecipes)
                         if boughtrecipe not in Items_and_Inventory.OwnedRecipes:
+                            Items_and_Inventory.playerinventory.money += -(20 + round(1.3 ** len(Items_and_Inventory.OwnedRecipes)))
                             Items_and_Inventory.OwnedRecipes.append(boughtrecipe)
-                            Items_and_Inventory.playerinventory.money += -(4 + len(Items_and_Inventory.OwnedRecipes))
                             rolling = False
 
         display.blit(font.render(f"Proceed to Crafting", True, 'white'), (gotocrafingarea[0] + 10, gotocrafingarea[1] + 10))
@@ -183,8 +183,9 @@ def craftmenu(): #Craftmenu screen
                     BuyCraftandSell.craftattempt(selecteditem)
                     materialnumber = -1
                     for materialtype in selecteditem.recipe.materials:
-                        materialtype.count += -selecteditem.recipe.quantities[materialnumber] 
                         materialnumber += 1
+                        materialtype.count += -selecteditem.recipe.quantities[materialnumber] 
+                       
                     
         else:
             display.blit(font.render(f"Recipe not Owned", True, 'white'), (craftbutton[0] +25, craftbutton[1] +25))
@@ -284,25 +285,28 @@ def sellmenu(): #Sellmenu screen
             display.blit(font.render(f"Sell for {selecteditem.value + modifiedsellprice}", True, 'white'), (sellbutton[0] +25, sellbutton[1] +25))
 
             if checkmousestate(sellbutton) == True:
-                pass #threshold + normal sell function
+                if dthreshold.dthreshold.client_decision(selecteditem.value, selecteditem.value, selecteditem.value + modifiedsellprice)[0] == True:
+                    selecteditem.count += -1
+                    Items_and_Inventory.playerinventory.money += selecteditem.value + modifiedsellprice
+                    
+
                     
         else:
             display.blit(font.render(f"Item not Owned", True, 'white'), (sellbutton[0] +25, sellbutton[1] +25))
 
         display.blit(font.render(f"Proceed to next day", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 5))
-        display.blit(font.render(f"You will receive {5 + Items_and_Inventory.playerinventory.craftexp} coins", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 25))
+        display.blit(font.render(f"You will receive {round(len(Items_and_Inventory.OwnedRecipes) ** 1.1 -1) } coins", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 25))
         pygame.draw.rect(display, 'white', finishdaybutton, 1)
         if checkmousestate(finishdaybutton) == True:
             sellmenu == False
-            Items_and_Inventory.playerinventory.money += 5 + Items_and_Inventory.playerinventory.craftexp
+            Items_and_Inventory.playerinventory.money += round(len(Items_and_Inventory.OwnedRecipes) ** 1.1 -1) 
             daynum += 1
             break
 
         pygame.display.flip()
         clock.tick(60)
-        pass
 
-import pygame, sys, Items_and_Inventory, BuyCraftandSell, random
+import pygame, sys, Items_and_Inventory, BuyCraftandSell, random, dthreshold, d10_and_end_game
 from pygame.locals import *
 pygame.font.init()
 pygame.init()
@@ -323,3 +327,19 @@ while win == False:
     craftmenu()
 
     sellmenu()
+    
+    if d10_and_end_game.end_game(Items_and_Inventory.playerinventory.money) == True:
+        win == True
+
+while win == True:
+    exitgamecheck()
+    display.fill('black')
+    display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
+    display.blit(font.render(f"Day {daynum}", True, 'white'),[50,100])
+
+    display.blit(font.render("You Won", True, 'white'), (displayx/2 - 20, displayy/2))
+    display.blit(font.render(f"You reached 10K in {daynum} days", True, 'white'), (displayx/2- 65, displayy/2 + 20))
+
+    pygame.display.flip()
+    clock.tick(60)
+
