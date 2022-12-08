@@ -15,6 +15,10 @@ def checkmousestate(rectanglearea):
                 return True
 
 def starting(): #Starting screen, renders a simple starting button
+    global daynum
+
+    startarea = pygame.Rect(displayx/2 - 100, displayy/2 - 25, 250, 75)
+
     starting = True
     while starting == True:
         exitgamecheck()
@@ -25,6 +29,7 @@ def starting(): #Starting screen, renders a simple starting button
     
         if checkmousestate(startarea) == True:
             starting = False
+            daynum = 1
             
         pygame.display.flip()
         clock.tick(60)
@@ -51,6 +56,7 @@ def buymenu(): #Buymenu screen
         exitgamecheck()
         display.fill('black')
         display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
+        display.blit(font.render(f"Day {daynum}", True, 'white'),[50,100])
 
         num = 0
         for materialname in Items_and_Inventory.allmaterials: #Renders strings and buttons for each existing material in their respective button
@@ -98,7 +104,7 @@ def buymenu(): #Buymenu screen
         pygame.display.flip()
         clock.tick(60)
         
-def craftmenu():
+def craftmenu(): #Craftmenu screen
     global Items
 
     weapontypes = {
@@ -136,6 +142,7 @@ def craftmenu():
         exitgamecheck()
         display.fill('black')
         display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
+        display.blit(font.render(f"Day {daynum}", True, 'white'),[50,100])
 
         display.blit(font.render(f"Type: {selectedequipmenttype}", True, 'white'), (equipmenttypearea[0] + 10, equipmenttypearea[1] + 10))
         display.blit(font.render(f"Lvl {selectedequipmentlvl}", True, 'white'), (equipmentlvlarea[0] + 10, equipmentlvlarea[1] + 10))
@@ -168,9 +175,7 @@ def craftmenu():
             if checkmousestate(craftbutton) == True:
                 materialnumber = -1
                 enoughmaterials = True
-                print("a")
                 for materialtype in selecteditem.recipe.materials:
-                    print (materialtype)
                     materialnumber += 1
                     if materialtype.count < selecteditem.recipe.quantities[materialnumber]:
                         enoughmaterials = False
@@ -195,7 +200,9 @@ def craftmenu():
         pygame.display.flip()
         clock.tick(60)
 
-def sellmenu():
+def sellmenu(): #Sellmenu screen
+    global daynum
+
     weapontypes = {
     "sword" : Items_and_Inventory.allswords,
     "hammer" : Items_and_Inventory.allhammers,
@@ -235,6 +242,7 @@ def sellmenu():
         exitgamecheck()
         display.fill('black')
         display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
+        display.blit(font.render(f"Day {daynum}", True, 'white'),[50,100])
 
         display.blit(font.render(f"Type: {selectedequipmenttype}", True, 'white'), (equipmenttypearea[0] + 10, equipmenttypearea[1] + 10))
         display.blit(font.render(f"Lvl {selectedequipmentlvl}", True, 'white'), (equipmentlvlarea[0] + 10, equipmentlvlarea[1] + 10))
@@ -253,12 +261,16 @@ def sellmenu():
 
         if checkmousestate(typeupbutton) == True and equipmenttypeindex != 5:
             equipmenttypeindex += 1
+            modifiedsellprice = 0
         elif checkmousestate(typedownbutton) == True and equipmenttypeindex != 0:
             equipmenttypeindex += -1
+            modifiedsellprice = 0
         elif checkmousestate(lvlupbutton) == True and equipmentlvlindex != 3:
             equipmentlvlindex += 1
+            modifiedsellprice = 0
         elif checkmousestate(lvldownbutton) == True and equipmentlvlindex != 0:
             equipmentlvlindex += -1
+            modifiedsellprice = 0
         elif checkmousestate(priceupbutton) == True and modifiedsellprice != 99:
             modifiedsellprice += 1
         elif checkmousestate(pricedownbutton) == True and equipmentlvlindex != -selecteditem.value:
@@ -277,10 +289,13 @@ def sellmenu():
         else:
             display.blit(font.render(f"Item not Owned", True, 'white'), (sellbutton[0] +25, sellbutton[1] +25))
 
-        display.blit(font.render(f"Proceed to next day", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 10))
+        display.blit(font.render(f"Proceed to next day", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 5))
+        display.blit(font.render(f"You will receive {5 + Items_and_Inventory.playerinventory.craftexp} coins", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 25))
         pygame.draw.rect(display, 'white', finishdaybutton, 1)
         if checkmousestate(finishdaybutton) == True:
-            buymenu == False
+            sellmenu == False
+            Items_and_Inventory.playerinventory.money += 5 + Items_and_Inventory.playerinventory.craftexp
+            daynum += 1
             break
 
         pygame.display.flip()
@@ -298,22 +313,13 @@ displayy = 1080
 display = pygame.display.set_mode((displayx, displayy))
 
 font = pygame.font.SysFont('Comic Sans MS', 15)
-startarea = pygame.Rect(displayx/2 - 100, displayy/2 - 25, 250, 75)
+
+starting()
 
 win = False #This will turn true when the player has reached the win condition, otherwise it just enables looping the game
+while win == False:
+    buymenu()
 
+    craftmenu()
 
-
-while True:
-    starting()
-
-    while win == False:
-        buymenu()
-    
-        craftmenu()
-
-        sellmenu()
-
-    pygame.display.flip()
-    clock.tick(60)
-    
+    sellmenu()
