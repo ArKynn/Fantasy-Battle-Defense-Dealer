@@ -90,35 +90,35 @@ recipe_greaves_lvl4 = recipe("Legendary Greaves recipe", (iron, leather , precio
 
 
 
-sword_lvl1 = weapon("Common Sword", 20, 0, 0, 1, 1, recipe_sword_lvl1, 10, True)
-sword_lvl2 = weapon("Rare Sword", 25, 0, 0, 2, 2, recipe_sword_lvl2, 12, False) 
-sword_lvl3 = weapon("Exotic Sword", 40, 0, 0, 3, 3, recipe_sword_lvl3, 19, False) 
-sword_lvl4 = weapon("Legendary Sword", 100, 0, 0, 4, 4, recipe_sword_lvl4, 24, False)
+sword_lvl1 = weapon("Common Sword", 30, 0, 0, 1, 1, recipe_sword_lvl1, 10, True)
+sword_lvl2 = weapon("Rare Sword", 40, 0, 0, 2, 2, recipe_sword_lvl2, 12, False) 
+sword_lvl3 = weapon("Exotic Sword", 70, 0, 0, 3, 3, recipe_sword_lvl3, 19, False) 
+sword_lvl4 = weapon("Legendary Sword", 170, 0, 0, 4, 4, recipe_sword_lvl4, 24, False)
 
-hammer_lvl1 = weapon("Common Hammer", 25, 0, 0, 1, 1, recipe_hammer_lvl1, 12, True)
-hammer_lvl2 = weapon("Rare Hammer", 30, 0, 0, 2, 2, recipe_hammer_lvl2, 15, False)
-hammer_lvl3 = weapon("Exotic Hammer", 50, 0, 0, 3, 3, recipe_hammer_lvl3, 20, False)
-hammer_lvl4 = weapon("Legendary Hammer", 150, 0, 0, 4, 4, recipe_hammer_lvl4, 28, False)
+hammer_lvl1 = weapon("Common Hammer", 45, 0, 0, 1, 1, recipe_hammer_lvl1, 12, True)
+hammer_lvl2 = weapon("Rare Hammer", 60, 0, 0, 2, 2, recipe_hammer_lvl2, 15, False)
+hammer_lvl3 = weapon("Exotic Hammer", 80, 0, 0, 3, 3, recipe_hammer_lvl3, 20, False)
+hammer_lvl4 = weapon("Legendary Hammer", 180, 0, 0, 4, 4, recipe_hammer_lvl4, 28, False)
 
-bow_lvl1 = weapon("Common Bow", 10, 0, 0, 1, 1, recipe_bow_lvl1, 13, True)
-bow_lvl2 = weapon("Rare Bow", 15, 0, 0, 2, 2, recipe_bow_lvl2, 18, False)
-bow_lvl3 = weapon("Exotic Bow", 30, 0, 0, 3, 3, recipe_bow_lvl3, 25, False)
-bow_lvl4 = weapon("Legendary Bow", 80, 0, 0, 4, 4, recipe_bow_lvl4, 28, False)
+bow_lvl1 = weapon("Common Bow", 30, 0, 0, 1, 1, recipe_bow_lvl1, 13, True)
+bow_lvl2 = weapon("Rare Bow", 45, 0, 0, 2, 2, recipe_bow_lvl2, 18, False)
+bow_lvl3 = weapon("Exotic Bow", 65, 0, 0, 3, 3, recipe_bow_lvl3, 25, False)
+bow_lvl4 = weapon("Legendary Bow", 165, 0, 0, 4, 4, recipe_bow_lvl4, 28, False)
 
-helmet_lvl1 = armor("Common Helmet", 30, 0, 0, 1, 1, recipe_helmet_lvl1, 10, True)
-helmet_lvl2 = armor("Rare Helmet", 35, 0, 0, 2, 2, recipe_helmet_lvl2, 14, False)
-helmet_lvl3 = armor("Exotic Helmet", 60, 0, 0, 3, 3, recipe_helmet_lvl3, 16, False)
-helmet_lvl4 = armor("Legendary Helmet", 180, 0, 0, 4, 4, recipe_helmet_lvl4, 22, False)
+helmet_lvl1 = armor("Common Helmet", 45, 0, 0, 1, 1, recipe_helmet_lvl1, 10, True)
+helmet_lvl2 = armor("Rare Helmet", 60, 0, 0, 2, 2, recipe_helmet_lvl2, 14, False)
+helmet_lvl3 = armor("Exotic Helmet", 85, 0, 0, 3, 3, recipe_helmet_lvl3, 16, False)
+helmet_lvl4 = armor("Legendary Helmet", 200, 0, 0, 4, 4, recipe_helmet_lvl4, 22, False)
 
-chestplate_lvl1 = armor("Common Chestplate", 35, 0, 0, 1, 1, recipe_chestplate_lvl1, 14, True)
-chestplate_lvl2 = armor("Rare Chestplate", 40, 0, 0, 2, 2, recipe_chestplate_lvl2, 20, False)
-chestplate_lvl3 = armor("Exotic Chestplate", 70, 0, 0, 3, 3, recipe_chestplate_lvl3, 23, False)
-chestplate_lvl4 = armor("Legendary Chestplate", 200, 0, 0, 4, 4, recipe_chestplate_lvl4, 29, False)
+chestplate_lvl1 = armor("Common Chestplate", 75, 0, 0, 1, 1, recipe_chestplate_lvl1, 14, True)
+chestplate_lvl2 = armor("Rare Chestplate", 90, 0, 0, 2, 2, recipe_chestplate_lvl2, 20, False)
+chestplate_lvl3 = armor("Exotic Chestplate", 130, 0, 0, 3, 3, recipe_chestplate_lvl3, 23, False)
+chestplate_lvl4 = armor("Legendary Chestplate", 255, 0, 0, 4, 4, recipe_chestplate_lvl4, 29, False)
 
-greaves_lvl1 = armor("Common Greaves", 30, 0, 0, 1, 1, recipe_greaves_lvl1, 10, True)
-greaves_lvl2 = armor("Rare Greaves", 35, 0, 0, 2, 2, recipe_greaves_lvl2, 15, False)
-greaves_lvl3 = armor("Exotic Greaves", 60, 0, 0, 3, 3, recipe_greaves_lvl3, 20, False)
-greaves_lvl4 = armor("Legendary Greaves", 170, 0, 0, 4, 4, recipe_greaves_lvl4, 25, False)
+greaves_lvl1 = armor("Common Greaves", 45, 0, 0, 1, 1, recipe_greaves_lvl1, 10, True)
+greaves_lvl2 = armor("Rare Greaves", 55, 0, 0, 2, 2, recipe_greaves_lvl2, 15, False)
+greaves_lvl3 = armor("Exotic Greaves", 80, 0, 0, 3, 3, recipe_greaves_lvl3, 20, False)
+greaves_lvl4 = armor("Legendary Greaves", 210, 0, 0, 4, 4, recipe_greaves_lvl4, 25, False)
 
 
 allmaterials = [wood, string, leather, iron, gold, precious_stone]
