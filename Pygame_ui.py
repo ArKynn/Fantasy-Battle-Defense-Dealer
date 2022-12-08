@@ -107,8 +107,7 @@ def craftmenu():
     "bow" : Items_and_Inventory.allbows,
     "helmet" : Items_and_Inventory.allhelmets,
     "chestplate" : Items_and_Inventory.allchestplates,
-    "greaves" : Items_and_Inventory.allgreaves,
-}
+    "greaves" : Items_and_Inventory.allgreaves}
 
     equipmenttypearea = pygame.Rect(displayx / 4 +75, displayy / 2, 175, 75)
     typeupbutton = pygame.Rect(displayx / 4, displayy / 2, 75, 30)
@@ -116,7 +115,6 @@ def craftmenu():
     equipmentlvlarea = pygame.Rect(displayx / 4 + 275, displayy / 2, 75, 75)
     lvlupbutton = pygame.Rect(displayx / 4 + 350, displayy / 2, 75, 30)
     lvldownbutton = pygame.Rect(displayx / 4 + 350, displayy / 2 + 45, 75, 30)
-    recipematerialarea = pygame.Rect(displayx / 4, displayy / 2 + 100, 250, 30)
     craftbutton =  pygame.Rect(displayx / 4 + 475, displayy / 2, 175, 75)
     gotosellbutton = pygame.Rect(displayx- 300, displayy - 100, 200, 50)
 
@@ -128,10 +126,6 @@ def craftmenu():
 
     equipmenttypeindex = 0
     equipmentlvlindex = 0
-
-    selectedequipmenttype = allequipmenttypes[equipmenttypeindex]
-    selectedequipmentlvl = allequipmentlvls[equipmentlvlindex]
-
     
     craftmenu = True
     while craftmenu == True:
@@ -165,7 +159,7 @@ def craftmenu():
             equipmentlvlindex += -1
         
         selecteditem = weapontypes[selectedequipmenttype][selectedequipmentlvl -1]
-        display.blit(font.render(f"Ammout owned: {selecteditem.count}, {selecteditem.recipe.description}", True, 'white'), (displayx / 4, displayy / 2 + 100))
+        display.blit(font.render(f"Amount owned: {selecteditem.count}, {selecteditem.recipe.description}", True, 'white'), (displayx / 4, displayy / 2 + 100))
 
         if selecteditem.recipe in Items_and_Inventory.OwnedRecipes:
             pygame.draw.rect(display, 'white', craftbutton, 1)
@@ -201,6 +195,98 @@ def craftmenu():
         pygame.display.flip()
         clock.tick(60)
 
+def sellmenu():
+    weapontypes = {
+    "sword" : Items_and_Inventory.allswords,
+    "hammer" : Items_and_Inventory.allhammers,
+    "bow" : Items_and_Inventory.allbows,
+    "helmet" : Items_and_Inventory.allhelmets,
+    "chestplate" : Items_and_Inventory.allchestplates,
+    "greaves" : Items_and_Inventory.allgreaves}
+
+    equipmenttypearea = pygame.Rect(displayx / 4 +75, displayy / 2, 175, 75)
+    typeupbutton = pygame.Rect(displayx / 4, displayy / 2, 75, 30)
+    typedownbutton = pygame.Rect(displayx / 4, displayy / 2 + 45, 75, 30)
+    equipmentlvlarea = pygame.Rect(displayx / 4 + 275, displayy / 2, 75, 75)
+    lvlupbutton = pygame.Rect(displayx / 4 + 350, displayy / 2, 75, 30)
+    lvldownbutton = pygame.Rect(displayx / 4 + 350, displayy / 2 + 45, 75, 30)
+    priceupbutton = pygame.Rect(displayx / 4 + 650, displayy / 2, 75, 30)
+    pricedownbutton = pygame.Rect(displayx / 4 + 650, displayy / 2 +45, 75, 30)
+    sellbutton =  pygame.Rect(displayx / 4 + 475, displayy / 2, 175, 75)
+    finishdaybutton = pygame.Rect(displayx- 300, displayy - 100, 200, 50)
+
+    allsellbuttons = (equipmenttypearea, typeupbutton, typedownbutton, 
+                        equipmentlvlarea, lvlupbutton, lvldownbutton,
+                        priceupbutton, pricedownbutton)
+
+    equipmenttypeindex = 0
+    equipmentlvlindex = 0
+    modifiedsellprice = 0
+
+    allequipmenttypes = ("sword", "hammer", "bow", "helmet", "chestplate", "greaves")
+    allequipmentlvls = (1, 2, 3, 4)
+    
+    sellmenu = True
+    while sellmenu == True:
+
+        selectedequipmenttype = allequipmenttypes[equipmenttypeindex]
+        selectedequipmentlvl = allequipmentlvls[equipmentlvlindex]
+
+        exitgamecheck()
+        display.fill('black')
+        display.blit(font.render("Exit = ESC", True, 'white'),[50,50])
+
+        display.blit(font.render(f"Type: {selectedequipmenttype}", True, 'white'), (equipmenttypearea[0] + 10, equipmenttypearea[1] + 10))
+        display.blit(font.render(f"Lvl {selectedequipmentlvl}", True, 'white'), (equipmentlvlarea[0] + 10, equipmentlvlarea[1] + 10))
+
+        for button in allsellbuttons:
+            pygame.draw.rect(display, 'white', button, 1)
+        
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +27, displayy /2 +23),(displayx /4 +35, displayy /2 + 7),(displayx /4 +43, displayy /2 +23)], 1)
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +27, displayy /2 +52),(displayx /4 +35, displayy /2 + 68),(displayx /4 +43, displayy /2 +52)], 1)
+
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +377, displayy /2 +23),(displayx /4 +385, displayy /2 + 7),(displayx /4 +393, displayy /2 +23)], 1)
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +377, displayy /2 +52),(displayx /4 +385, displayy /2 + 68),(displayx /4 +393, displayy /2 +52)], 1)
+
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +677, displayy /2 +23),(displayx /4 +685, displayy /2 + 7),(displayx /4 +693, displayy /2 +23)], 1)
+        pygame.draw.lines(display, 'white', False, [(displayx /4 +677, displayy /2 +52),(displayx /4 +685, displayy /2 + 68),(displayx /4 +693, displayy /2 +52)], 1)
+
+        if checkmousestate(typeupbutton) == True and equipmenttypeindex != 5:
+            equipmenttypeindex += 1
+        elif checkmousestate(typedownbutton) == True and equipmenttypeindex != 0:
+            equipmenttypeindex += -1
+        elif checkmousestate(lvlupbutton) == True and equipmentlvlindex != 3:
+            equipmentlvlindex += 1
+        elif checkmousestate(lvldownbutton) == True and equipmentlvlindex != 0:
+            equipmentlvlindex += -1
+        elif checkmousestate(priceupbutton) == True and modifiedsellprice != 99:
+            modifiedsellprice += 1
+        elif checkmousestate(pricedownbutton) == True and equipmentlvlindex != -selecteditem.value:
+            modifiedsellprice += -1
+        
+        selecteditem = weapontypes[selectedequipmenttype][selectedequipmentlvl -1]
+        display.blit(font.render(f"Amount owned: {selecteditem.count}, Starting sell price: {selecteditem.value}", True, 'white'), (displayx / 4, displayy / 2 + 100))
+
+        if selecteditem.count > 0:
+            pygame.draw.rect(display, 'white', sellbutton, 1)
+            display.blit(font.render(f"Sell for {selecteditem.value + modifiedsellprice}", True, 'white'), (sellbutton[0] +25, sellbutton[1] +25))
+
+            if checkmousestate(sellbutton) == True:
+                pass #threshold + normal sell function
+                    
+        else:
+            display.blit(font.render(f"Item not Owned", True, 'white'), (sellbutton[0] +25, sellbutton[1] +25))
+
+        display.blit(font.render(f"Proceed to next day", True, 'white'), (finishdaybutton[0] + 10, finishdaybutton[1] + 10))
+        pygame.draw.rect(display, 'white', finishdaybutton, 1)
+        if checkmousestate(finishdaybutton) == True:
+            buymenu == False
+            break
+
+        pygame.display.flip()
+        clock.tick(60)
+        pass
+
 import pygame, sys, Items_and_Inventory, BuyCraftandSell, random
 from pygame.locals import *
 pygame.font.init()
@@ -225,6 +311,8 @@ while True:
         buymenu()
     
         craftmenu()
+
+        sellmenu()
 
     pygame.display.flip()
     clock.tick(60)
