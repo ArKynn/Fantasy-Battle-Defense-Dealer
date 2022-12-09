@@ -136,6 +136,7 @@ allgreaves = [greaves_lvl1, greaves_lvl2, greaves_lvl3, greaves_lvl4]
 
 #array for all owned recipes
 OwnedRecipes = [recipe_sword_lvl1, recipe_bow_lvl1, recipe_hammer_lvl1, recipe_chestplate_lvl1, recipe_greaves_lvl1, recipe_helmet_lvl1]
+#list of all posible recipes
 allrecipes = [recipe_sword_lvl1, recipe_bow_lvl1, recipe_hammer_lvl1, recipe_chestplate_lvl1, recipe_greaves_lvl1, recipe_helmet_lvl1,
                 recipe_sword_lvl2, recipe_bow_lvl2, recipe_hammer_lvl2, recipe_chestplate_lvl2, recipe_greaves_lvl2, recipe_helmet_lvl2,
                 recipe_sword_lvl3, recipe_bow_lvl3, recipe_hammer_lvl3, recipe_chestplate_lvl3, recipe_greaves_lvl3, recipe_helmet_lvl3,

@@ -1,4 +1,5 @@
 import Items_and_Inventory, d10_and_end_game
+
 def buy_materials(input):
 
     if input in Items_and_Inventory.allmaterials:
@@ -7,8 +8,7 @@ def buy_materials(input):
             input.count += 1
             return True
         else:
-            return False        
-    raise Exception("Input is not of the same type as material or does not exist.")
+            return False
     
 def craftattempt(craftitem):
     
@@ -18,6 +18,7 @@ def craftattempt(craftitem):
         craftitem.count += 1
 
 def sell(input, playerinventory):
+    
     if input.count >= 1:
         input.count += -1
         playerinventory += input.value
