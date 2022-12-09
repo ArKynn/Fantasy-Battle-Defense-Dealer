@@ -328,8 +328,9 @@ while win == False:
 
     sellmenu()
     
-    if d10_and_end_game.end_game(Items_and_Inventory.playerinventory.money) == True:
-        win == True
+    if d10_and_end_game.end_game() == True:
+        win = True
+        break
 
 while win == True:
     exitgamecheck()
