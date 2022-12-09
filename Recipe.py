@@ -1,4 +1,4 @@
-
+#class for creating recipe for all the items
 class recipe:
 
     def __init__(self, name, materials, quantities, description):
@@ -6,12 +6,6 @@ class recipe:
         self.materials = materials
         self.quantities = quantities
         self.description = description
-    
-
-    def display(self):
-        print("Recipe")
-        print("   Name: " + self.name)
-        print("   Description " + self.description)
         
 
 

@@ -7,6 +7,7 @@ class dthreshold:
 	#Calculates the decision threshold based on the quadratic function (y = ax^2) where thresh = y, 
 	#"a" is a calculated value based on the "pmed" (medium price) and coeficient "crdr" (resources, dificulty, rarity)
 	def thresh_calc(pmed:int, crdr:int ): 
+		#crdr = crec(recursos) + cdif(dificuldade de craft) + crar(raridade)
 		a = 1/(pmed*crdr)
 		thresh = a*pmed**2
 		return thresh

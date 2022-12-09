@@ -1,7 +1,7 @@
 #----------Items and inventory---------#
 from Recipe import recipe
 
-
+#class for the definition of items
 class item:
     def __init__(self, name, value, count):
         self.name = name
@@ -13,7 +13,7 @@ class item:
         print("Value: " + str(self.value))
         print("Count: " + str(self.count))
 
-
+#class for the definition of weapons
 class weapon(item):
     def __init__(self, name, value, modified_value, count, damage, min_quality, recipe, c_rdr ,recipeowned):
         super(weapon, self).__init__(name, value, count) #Based on answer by Ozgur Vatansever on StackOverflow (https://stackoverflow.com/questions/31899465/python-how-to-correctly-set-up-hierarchy-of-classes)
@@ -29,6 +29,7 @@ class weapon(item):
         print("Damage: " + str(self.damage))
         print("Quality: " + str(self.min_quality))
 
+#class for the definition of armor
 class armor(item):
     def __init__(self, name, value, modified_value, count, protection, min_quality, recipe, c_rdr, recipeowned):
         super(armor, self).__init__(name, value, count)
@@ -45,19 +46,21 @@ class armor(item):
         print("Quality: " + str(self.min_quality))
     
 
-
+#class for the definition of material
 class material(item):
     def __init__(self, name, value, count):
         super().__init__(name, value, count)
 
-
+#--------------materials definition------------------#
+            #(name, value, count)
 wood = material("Wood", 5, 0)
 string = material("String", 5, 0)
 leather = material("Leather", 6, 0)
 iron = material("Iron", 10, 0)
 gold = material("Gold", 20, 0)
 precious_stone = material("Precious Stone", 50, 0)
-
+#--------------recipes definition------------------#
+                            #(name, materials, quantities, description)
 recipe_sword_lvl1 = recipe("Common Sword recipe", (wood, iron, leather), (1, 1, 1), "Needs 1*wood, 1*iron, 1*leather")
 recipe_sword_lvl2 = recipe("Rare Sword recipe", (wood, iron, leather), (1, 2, 1), "Needs 1*wood, 2*iron, 1*leather")
 recipe_sword_lvl3 = recipe("Exotic Sword recipe", (wood, iron, leather , gold), (1, 2, 1, 1), "Needs 1*wood, 2*iron, 1*leather , 1*gold")
@@ -88,8 +91,8 @@ recipe_greaves_lvl2 = recipe("Rare Greaves recipe", (iron, leather), (4, 1), "Ne
 recipe_greaves_lvl3 = recipe("Exotic Greaves recipe", (iron, leather, gold), (4, 1, 1), "Needs 4*iron, 1*leather, 1*gold")
 recipe_greaves_lvl4 = recipe("Legendary Greaves recipe", (iron, leather , precious_stone), (5, 1, 2, 1), "Needs 4*iron, 1*leather, 1*gold, 1*precious stone")
 
-
-
+#--------------weapons and armor definition------------------#
+                    #(name, value, modified_value, count, damage, min_quality, recipe, recipeowned)
 sword_lvl1 = weapon("Common Sword", 30, 0, 0, 1, 1, recipe_sword_lvl1, 10, True)
 sword_lvl2 = weapon("Rare Sword", 40, 0, 0, 2, 2, recipe_sword_lvl2, 12, False) 
 sword_lvl3 = weapon("Exotic Sword", 70, 0, 0, 3, 3, recipe_sword_lvl3, 19, False) 
@@ -120,7 +123,7 @@ greaves_lvl2 = armor("Rare Greaves", 55, 0, 0, 2, 2, recipe_greaves_lvl2, 15, Fa
 greaves_lvl3 = armor("Exotic Greaves", 80, 0, 0, 3, 3, recipe_greaves_lvl3, 20, False)
 greaves_lvl4 = armor("Legendary Greaves", 210, 0, 0, 4, 4, recipe_greaves_lvl4, 25, False)
 
-
+#--------------arrays for items------------------#
 allmaterials = [wood, string, leather, iron, gold, precious_stone]
 
 allswords = [sword_lvl1, sword_lvl2, sword_lvl3, sword_lvl4]
@@ -131,18 +134,19 @@ allchestplates = [chestplate_lvl1, chestplate_lvl2, chestplate_lvl3, chestplate_
 allgreaves = [greaves_lvl1, greaves_lvl2, greaves_lvl3, greaves_lvl4]
 
 
-
+#array for all owned recipes
 OwnedRecipes = [recipe_sword_lvl1, recipe_bow_lvl1, recipe_hammer_lvl1, recipe_chestplate_lvl1, recipe_greaves_lvl1, recipe_helmet_lvl1]
 allrecipes = [recipe_sword_lvl1, recipe_bow_lvl1, recipe_hammer_lvl1, recipe_chestplate_lvl1, recipe_greaves_lvl1, recipe_helmet_lvl1,
                 recipe_sword_lvl2, recipe_bow_lvl2, recipe_hammer_lvl2, recipe_chestplate_lvl2, recipe_greaves_lvl2, recipe_helmet_lvl2,
                 recipe_sword_lvl3, recipe_bow_lvl3, recipe_hammer_lvl3, recipe_chestplate_lvl3, recipe_greaves_lvl3, recipe_helmet_lvl3,
                 recipe_sword_lvl4, recipe_bow_lvl4, recipe_hammer_lvl4, recipe_chestplate_lvl4, recipe_greaves_lvl4, recipe_helmet_lvl4]
 
+#class for the definition of the player inventory
 class classplayerinventory:
     def __init__(self, money, craftexp):
         self.money = money
         self.craftexp = craftexp
-
+#player inventory definition (money, exp)
 playerinventory = classplayerinventory(250, 0)
 
 
